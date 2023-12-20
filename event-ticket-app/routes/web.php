@@ -48,5 +48,6 @@ Route::post('/logout', function () {
 Route::post('/createEvent', [App\Http\Controllers\EventsController::class, 'createEvent'])->name('createEvent');
 Route::put('/updateEvent/{id}', [App\Http\Controllers\EventsController::class, 'update'])->name('updateEvent');
 Route::delete('/event/{id}', [App\Http\Controllers\EventsController::class, 'deleteEvent'])->name('deleteEvent');
+Route::put('/event/{id}', [App\Http\Controllers\EventsController::class, 'updateEvent'])->name('updateEvent');
 
 ?>
