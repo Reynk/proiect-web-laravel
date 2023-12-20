@@ -21,20 +21,20 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/db-test', function () {
-    try {
-        DB::connection()->getPdo();
-        return "DB connection is working!";
-    } catch (\Exception $e) {
-        return "Could not connect to the DB: " . $e->getMessage();
-    }
-});
+// Route::get('/db-test', function () {
+//     try {
+//         DB::connection()->getPdo();
+//         return "DB connection is working!";
+//     } catch (\Exception $e) {
+//         return "Could not connect to the DB: " . $e->getMessage();
+//     }
+// });
 
-Route::get('/admin-usernames', function () {
-    $usernames = DB::table('admins')->pluck('username');
+// Route::get('/admin-usernames', function () {
+//     $usernames = DB::table('admins')->pluck('username');
 
-    return $usernames;
-});
+//     return $usernames;
+// });
 
 
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
@@ -49,5 +49,8 @@ Route::post('/createEvent', [App\Http\Controllers\EventsController::class, 'crea
 Route::put('/updateEvent/{id}', [App\Http\Controllers\EventsController::class, 'update'])->name('updateEvent');
 Route::delete('/event/{id}', [App\Http\Controllers\EventsController::class, 'deleteEvent'])->name('deleteEvent');
 Route::put('/event/{id}', [App\Http\Controllers\EventsController::class, 'updateEvent'])->name('updateEvent');
-
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register');
+Route::get('/mainPage', function () {
+    return view('mainPage');
+})->name('mainPage');
 ?>
