@@ -55,24 +55,51 @@
                     </tr>
                 </table>
             </form>
-            <div class="event-list">
-                <table>
-                    <!-- Your table headers here -->
-                    @foreach($events as $event)
-                    <tr>
-                        <!-- Your table data here -->
-                    </tr>
-                    <tr class="edit-row">
-                        <form action="{{ route('updateEvent', $event->id) }}" method="post"
-                            enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>About</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                @foreach ($events as $event)
+                <tr>
+                    <td>{{ $event->title }}</td>
+                    <td>{{ $event->date }}</td>
+                    <td>{{ $event->about }}</td>
+                    <td>{{ $event->description }}</td>
+                    <td>{{ $event->price }}</td>
+                    <td>
+                        <form action="{{ route('deleteEvent', $event->id) }}" method="post">
                             @csrf
-                            @method('PUT')
-                            <!-- Your form fields here -->
+                            @method('DELETE')
+                            <button type="submit" class="admin-button-delete">Delete Event</button>
                         </form>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
+                    </td>
+                </tr>
+                <tr class="edit-row">
+                    <form action="{{ route('updateEvent', $event->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <td colspan="5">
+                            <input type="text" name="title" value="{{ $event->title }}" placeholder="Update Title">
+                            <input type="date" name="date" value="{{ $event->date }}" placeholder="Update Date">
+                            <input type="text" name="about" value="{{ $event->about }}">
+                            <input type="text" name="description" value="{{ $event->description }}"
+                                placeholder="Update Description">
+                            <input type="text" name="price" value="{{ $event->price }}" placeholder="Update Price">
+                            <input type="file" name="image" id="image">
+                        </td>
+                        <td>
+                            <button class="admin-button" type="submit">Update Information</button>
+                        </td>
+                    </form>
+                </tr>
+                @endforeach
+            </table>
+        </div>
 </main>
 <footer>
     <div class="footer">

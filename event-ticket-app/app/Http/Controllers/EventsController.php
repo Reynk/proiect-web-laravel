@@ -14,7 +14,7 @@ class EventsController extends Controller
         return view('tickets', ['events' => $events]);
     }
     public function createEvent(Request $request)
-    {   
+    {
         $validatedData = $request->validate([
             'title' => 'required',
             'date' => 'required|date',
@@ -23,13 +23,13 @@ class EventsController extends Controller
             'price' => 'nullable|numeric',
             'image' => 'nullable|image',
         ]);
-    
+
         $imageName = null;
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
         }
-    
+
         $event = new Event([
             'title' => $validatedData['title'],
             'date' => $validatedData['date'],
@@ -38,14 +38,22 @@ class EventsController extends Controller
             'price' => $validatedData['price'],
             'image' => $imageName,
         ]);
-    
+
         $event->save();
-    
+
         return redirect()->route('adminPage')->with('message', 'Event created successfully!');
-    
+
     }
     public function update(Request $request, $id)
     {
         // Validate and update the event.
+    }
+
+    public function deleteEvent($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->delete();
+
+        return redirect()->route('adminPage')->with('message', 'Event deleted successfully!');
     }
 }
