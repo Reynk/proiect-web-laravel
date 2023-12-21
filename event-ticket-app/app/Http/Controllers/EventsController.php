@@ -7,6 +7,7 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
+use App\Models\Order;
 
 class EventsController extends Controller
 {
@@ -91,6 +92,9 @@ class EventsController extends Controller
 
     public function deleteEvent($id)
     {
+        // delete order related to event first to avoid errors
+        Order::where('event_id', $id)->delete();
+
         $event = Event::findOrFail($id);
         $event->delete();
 

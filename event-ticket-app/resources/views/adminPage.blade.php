@@ -44,15 +44,16 @@
                         <td><label for="price">price:</label></td>
                         <td><input type="text" id="price" name="price" class="form-control"></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><label for="image">image:</label></td>
                         <td><input type="file" id="image" name="image" class="form-control-file"></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td colspan="2"><input type="submit" value="Create new event" class="btn btn-primary"></td>
                     </tr>
                 </table>
             </form>
+            <h2>Update events</h2>
             <table class="table table-bordered">
                 <tr>
                     <th>Title</th>
@@ -88,7 +89,7 @@
                             <input type="text" name="description" value="{{ $event->description }}"
                                 placeholder="Update Description" class="form-control">
                             <input type="text" name="price" value="{{ $event->price }}" placeholder="Update Price" class="form-control">
-                            <input type="file" name="image" id="image" class="form-control-file">
+                            <!-- <input type="file" name="image" id="image" class="form-control-file"> -->
                         </td>
                         <td>
                             <button class="btn btn-primary" type="submit">Update Information</button>
