@@ -4,89 +4,70 @@
 <script src="https://js.stripe.com/v3/"></script>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-        margin-top: 50px;
-    }
-
-    .logout-button {
-        display: block;
-        width: 200px;
-        height: 50px;
-        margin: 0 auto;
-        background-color: #f44336;
-        color: white;
-        text-align: center;
-        line-height: 50px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-</style>
 </head>
 <header>
     <nav>
 
     </nav>
 </header>
-{{ var_dump(Auth::check()) }}
 <h1>Upcoming events</h1>
 <div class="event-list">
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>About</th>
-            <th>Description</th>
-            <th>Price</th>
-        </tr>
-        @foreach ($events as $event)
-        <tr>
-            <td>{{ $event->title }}</td>
-            <td>{{ $event->date }}</td>
-            <td>{{ $event->about }}</td>
-            <td>{{ $event->description }}</td>
-            <td>{{ $event->price }}</td>
-            <td>
-                <a href="{{ route('eventInfo', ['id' => $event->id]) }}" class="btn btn-info">Event Info</a>
-            </td>
-            <td>
-                <div class="buy-ticket">
-                    <form action="{{ route('handlePayment') }}" method="POST">
-                        @csrf
-                        <!-- ... existing fields ... -->
-                        <label for="card-element">
-                            Credit or debit card
-                        </label>
-                        <div id="card-element">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>About</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($events as $event)
+            <tr>
+                <td>{{ $event->title }}</td>
+                <td>{{ $event->date }}</td>
+                <td>{{ $event->about }}</td>
+                <td>{{ $event->description }}</td>
+                <td>{{ $event->price }}</td>
+                <td>
+                    <a href="{{ route('eventInfo', ['id' => $event->id]) }}" class="btn btn-info">Event Info</a>
+                </td>
+                <td>
+                    <div class="buy-ticket">
+                        <form action="{{ route('handlePayment') }}" method="POST">
+                            @csrf
+                            <!-- ... existing fields ... -->
+                            <label for="size">Size</label>
+                            <select name="size" id="size">
+                                @for ($i = 1; $i <= 9; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                            </select>
                             <!-- A Stripe Element will be inserted here. -->
-                        </div>
+                    </div>
 
-                        <!-- Used to display form errors. -->
-                        <div id="card-errors" role="alert"></div>
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
 
-                        <button type="submit" class="custom-button">Buy Ticket</button>
+                    <button type="submit" class="btn btn-primary">Buy Ticket</button>
                     </form>
-                </div>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+</div>
+</td>
+</tr>
+@endforeach
+</tbody>
+</table>
 </div>
 @endsection
 
 @section('scripts')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    // Create a Stripe client.
+    // Creatpe client.
     var stripe = Stripe('{{ env("STRIPE_KEY") }}');
 
     // Create an instance of Elements.
@@ -144,8 +125,7 @@
         hiddenInput.setAttribute('value', token.id);
         form.appendChild(hiddenInput);
 
-        // Submit the form
-        form.submit();
+        // Submit the          form.submit();
     }
 </script>
 @endsection
