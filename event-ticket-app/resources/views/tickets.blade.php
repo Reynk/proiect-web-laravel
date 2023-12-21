@@ -18,7 +18,6 @@
 <div class="event-list">
     <table>
         <tr>
-            <th>Image</th>
             <th>Title</th>
             <th>Date</th>
             <th>About</th>
@@ -27,7 +26,7 @@
         </tr>
         @foreach ($events as $event)
         <tr>
-            <td><img src="{{ $event->image }}" alt="logo" class="event-image"></td>
+            <!-- <td><img src="{{ $event->image }}" alt="logo" class="event-image"></td> -->
             <td>{{ $event->title }}</td>
             <td>{{ $event->date }}</td>
             <td>{{ $event->about }}</td>

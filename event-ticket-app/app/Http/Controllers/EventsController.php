@@ -23,7 +23,7 @@ class EventsController extends Controller
             'about' => 'nullable',
             'description' => 'nullable',
             'price' => 'nullable|numeric',
-            'image' => 'nullable|image',
+            // 'image' => 'nullable|image',
         ]);
 
         $imageName = null;
@@ -38,7 +38,7 @@ class EventsController extends Controller
             'about' => $validatedData['about'],
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
-            'image' => $imageName,
+            // 'image' => $imageName,
         ]);
 
         $event->save();

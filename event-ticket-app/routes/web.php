@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', function () {
+    return view('login');
+})->name('loginForm');
 Route::middleware(['web'])->group(function () {
-    Route::get('/login', function () {
-        return view('login');
-    })->name('loginForm');
+
     Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
     Route::get('/adminPage', [App\Http\Controllers\AdminController::class, 'index'])->name('adminPage');
     Route::get('/tickets', [App\Http\Controllers\EventsController::class, 'showEvents'])->name('tickets');
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'showOrders'])->name('orders');
     Route::post('/logout', function () {
         Auth::logout();
         return redirect('/login');
@@ -35,7 +37,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
-    // Route::get('/order', [App\Http\Controllers\OrderController::class, 'order'])->name('order');
+    Route::post('/insertOrder', 'OrderController@insertOrder')->name('insertOrder');
 });
 
 Route::middleware(['guest'])->group(function () {

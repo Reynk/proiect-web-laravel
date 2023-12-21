@@ -13,6 +13,7 @@
         </ul>
     </nav>
 </header>
+{{ var_dump(Auth::check()) }}
 <main>
     <h1>Admin event administration</h1>
     <div class="bilete-button">
