@@ -31,13 +31,15 @@ Route::middleware(['web'])->group(function () {
     Route::delete('/event/{id}', [App\Http\Controllers\EventsController::class, 'deleteEvent'])->name('deleteEvent');
     Route::put('/event/{id}', [App\Http\Controllers\EventsController::class, 'updateEvent'])->name('updateEvent');
     Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register');
+    Route::post('/buyTicket', [App\Http\Controllers\BuyController::class, 'buyTicket'])->name('buyTicket');
+
     Route::get('/mainPage', function () {
         return view('mainPage');
     })->name('mainPage');
     Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
-    Route::post('/insertOrder', 'OrderController@insertOrder')->name('insertOrder');
+    Route::post('/insertOrder', [App\Http\Controllers\OrderController::class, 'insertOrder'])->name('insertOrder');
 });
 
 Route::middleware(['guest'])->group(function () {

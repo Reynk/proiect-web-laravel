@@ -11,9 +11,12 @@ class EventsController extends Controller
     public function showEvents()
     {
         // dd(Auth::user());
-        $events = Event::all();
 
-        return view('tickets', ['events' => $events]);
+        $events = Event::all();
+        $username = Auth::user()->username; // Get the username of the currently authenticated user
+
+        return view('tickets', ['events' => $events, 'username' => $username]);
+
     }
     public function createEvent(Request $request)
     {
@@ -66,15 +69,15 @@ class EventsController extends Controller
             $event->price = $request->input('price');
         }
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads'), $imageName);
             $event->image = $imageName;
         }
-    
+
         $event->save();
-    
+
         return redirect()->route('adminPage')->with('message', 'Event updated successfully!');
-    
+
     }
 
     public function deleteEvent($id)
