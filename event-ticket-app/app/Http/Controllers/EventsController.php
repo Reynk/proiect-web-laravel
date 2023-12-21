@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class EventsController extends Controller
 {
@@ -94,4 +96,24 @@ class EventsController extends Controller
 
         return redirect()->route('adminPage')->with('message', 'Event deleted successfully!');
     }
+
+    public function handlePayment(Request $request)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            $charge = Charge::create([
+                'amount' => $request->price * 100, // Stripe expects amounts in cents
+                'currency' => 'usd',
+                'description' => 'Ticket for ' . $request->event_title,
+                'source' => $request->stripeToken,
+            ]);
+
+            // Handle post-payment actions like saving the order in your database
+            return redirect()->route('orders')->with('success', 'Payment successful!');
+        } catch (\Exception $ex) {
+            return redirect()->route('tickets')->with('error', $ex->getMessage());
+        }
+    }
+
 }

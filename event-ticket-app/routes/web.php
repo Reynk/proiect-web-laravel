@@ -41,6 +41,8 @@ Route::middleware(['web'])->group(function () {
     })->name('contact');
     Route::post('/insertOrder', [App\Http\Controllers\OrderController::class, 'insertOrder'])->name('insertOrder');
     Route::get('/eventInfo/{id}', [App\Http\Controllers\EventsController::class, 'showEventInfo'])->name('eventInfo');
+    Route::post('/handle-payment', [App\Http\Controllers\OrderController::class, 'handlePayment'])->name('handlePayment');
+
 });
 
 Route::middleware(['guest'])->group(function () {
