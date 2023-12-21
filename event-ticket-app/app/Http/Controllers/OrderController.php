@@ -34,13 +34,13 @@ class OrderController extends Controller
 
         try {
             $charge = Charge::create([
-                'amount' => $request->price * 100, // Stripe expects amounts in cents
+                'amount' => $request->price * 100, 
                 'currency' => 'usd',
                 'description' => 'Ticket for ' . $request->event_title,
                 'source' => $request->stripeToken,
             ]);
 
-            // Handle post-payment actions like saving the order in your database
+            
             return redirect()->route('orders')->with('success', 'Payment successful!');
         } catch (\Exception $ex) {
             return redirect()->route('tickets')->with('error', $ex->getMessage());
