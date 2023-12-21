@@ -18,6 +18,13 @@ class EventsController extends Controller
         return view('tickets', ['events' => $events, 'username' => $username]);
 
     }
+
+    public function showEventInfo($id)
+    {
+        $event = Event::findOrFail($id);
+
+        return view('eventInfo', ['event' => $event]);
+    }
     public function createEvent(Request $request)
     {
         $validatedData = $request->validate([

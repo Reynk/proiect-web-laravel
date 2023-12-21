@@ -32,6 +32,9 @@
             <td>{{ $event->description }}</td>
             <td>{{ $event->price }}</td>
             <td>
+                <a href="{{ route('eventInfo', ['id' => $event->id]) }}" class="btn btn-info">Event Info</a>
+            </td>
+            <td>
                 <div class="buy-ticket">
                     <form action="{{ route('insertOrder') }}" method="POST">
                         @csrf

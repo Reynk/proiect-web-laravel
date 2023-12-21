@@ -40,6 +40,7 @@ Route::middleware(['web'])->group(function () {
         return view('contact');
     })->name('contact');
     Route::post('/insertOrder', [App\Http\Controllers\OrderController::class, 'insertOrder'])->name('insertOrder');
+    Route::get('/eventInfo/{id}', [App\Http\Controllers\EventsController::class, 'showEventInfo'])->name('eventInfo');
 });
 
 Route::middleware(['guest'])->group(function () {
