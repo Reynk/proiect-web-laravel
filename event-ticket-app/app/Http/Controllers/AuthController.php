@@ -14,7 +14,7 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
     
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
+            // Authentication passed
            
             $user = Auth::user();
             // dd($user);
@@ -25,7 +25,7 @@ class AuthController extends Controller
             }
         }
     
-        // Authentication failed...
+        // Authentication failed
         return back()->withErrors([
             'login' => 'The provided credentials do not match our records.',
         ]);
