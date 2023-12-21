@@ -44,9 +44,7 @@
                     @csrf
                     <button type="submit" class="logout-button">LOGOUT</button>
                 </form>
-                <div>
-                    <h1>Home Page</h1>
-                </div>
+                
                 <div class="navbar">
                     <ul>
                     <li><a href="/mainPage">Home</a></li>
