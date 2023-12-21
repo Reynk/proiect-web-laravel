@@ -11,15 +11,21 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-    
+        $credentials = $request->only('username', 'password', 'is_admin');
+                    // dd($credentials);
+// dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+            session()->save();
+            // dd(session()->all());
             $user = Auth::user();
             // dd($user);
-            if ($user->is_admin) {
+            if (Auth::check() && $user->is_admin) {
+                // dd($user);
                 return redirect()->intended('adminPage');
             } else {
+                            // dd($user);
+
                 return redirect()->intended('tickets');
             }
         }

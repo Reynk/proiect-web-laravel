@@ -11,4 +11,8 @@ class Event extends Model
 
     protected $fillable = ['title', 'date', 'about', 'description', 'price', 'image'];
     use HasFactory;
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -13,6 +13,7 @@
         </ul>
     </nav>
 </header>
+{{ var_dump(Auth::check()) }}
 <h1>Upcoming events</h1>
 <div class="event-list">
     <table>
