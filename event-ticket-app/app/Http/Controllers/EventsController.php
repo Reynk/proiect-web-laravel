@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
     public function showEvents()
     {
+        dd(Auth::user());
         $events = Event::all();
 
         return view('tickets', ['events' => $events]);

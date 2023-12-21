@@ -15,6 +15,7 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+           
             $user = Auth::user();
             // dd($user);
             if ($user->is_admin) {

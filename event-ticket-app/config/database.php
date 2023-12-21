@@ -43,6 +43,21 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'eventsdb' => [
+            'driver' => 'mysql',
+            'host' => env('EVENTSDB_HOST', '127.0.0.1'),
+            'port' => env('EVENTSDB_PORT', '3306'),
+            'database' => env('EVENTSDB_DATABASE', 'eventsdb2'),
+            'username' => env('EVENTSDB_USERNAME', 'root'),
+            'password' => env('EVENTSDB_PASSWORD', ''),
+            'unix_socket' => env('EVENTSDB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
