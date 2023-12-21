@@ -6,18 +6,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/mainPage">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/tickets">Tickets</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
-            </li>
+            @if(!Auth::user()->is_admin)
+                <li class="nav-item">
+                    <a class="nav-link" href="/mainPage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tickets">Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            @endif
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
