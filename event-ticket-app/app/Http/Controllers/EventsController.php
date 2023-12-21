@@ -10,7 +10,7 @@ class EventsController extends Controller
 {
     public function showEvents()
     {
-        dd(Auth::user());
+        // dd(Auth::user());
         $events = Event::all();
 
         return view('tickets', ['events' => $events]);
