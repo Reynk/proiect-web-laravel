@@ -14,11 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // Assuming 'username' is intended to be the primary key
-            $table->string('username', 64)->unique(); // VARCHAR equivalent column with a length, marked as unique
-            $table->string('password', 256); // VARCHAR equivalent column with a length
-            $table->boolean('is_admin')->default(false); // TINYINT equivalent column, interpreted as boolean
-            // Timestamps are omitted based on the previous context provided
+            $table->id(); 
+            $table->string('username', 64)->unique();
+            $table->string('password', 256); 
+            $table->boolean('is_admin')->default(false);
         });
     }
 
